@@ -12068,8 +12068,7 @@ window.Vue = __webpack_require__(10);
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]);
 
 var router = new __WEBPACK_IMPORTED_MODULE_1_vue_router__["a" /* default */]({
-    routes: __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */],
-    mode: 'history'
+    routes: __WEBPACK_IMPORTED_MODULE_4__routes__["a" /* default */]
 });
 
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('app-header', __WEBPACK_IMPORTED_MODULE_2__components_Header_vue___default.a);
@@ -46252,12 +46251,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['addModal'],
+    data: function data() {
+        return {
+            list: {
+                name: '',
+                email: '',
+                phone: ''
+            }
+        };
+    },
+
     methods: {
         closeAddModal: function closeAddModal() {
             this.$emit('closeAddModal');
+        },
+        save: function save() {
+            var _this = this;
+
+            axios.post('/phonebook', this.$data.list).then(function (response) {
+                console.log(response);
+                _this.$emit('closeAddModal');
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     }
 });
@@ -46274,14 +46298,96 @@ var render = function() {
     _c("div", { staticClass: "modal-background" }),
     _vm._v(" "),
     _c("div", { staticClass: "modal-card" }, [
-      _vm._m(0),
+      _c("header", { staticClass: "modal-card-head" }, [
+        _c("p", { staticClass: "modal-card-title" }, [_vm._v("Modal title")]),
+        _vm._v(" "),
+        _c("button", {
+          staticClass: "delete",
+          attrs: { "aria-label": "close" },
+          on: { click: _vm.closeAddModal }
+        })
+      ]),
       _vm._v(" "),
-      _c("section", { staticClass: "modal-card-body" }),
+      _c("section", { staticClass: "modal-card-body" }, [
+        _c("label", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.list.name,
+              expression: "list.name"
+            }
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Name" },
+          domProps: { value: _vm.list.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.list, "name", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.list.email,
+              expression: "list.email"
+            }
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Email" },
+          domProps: { value: _vm.list.email },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.list, "email", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c("label", [_vm._v("Phone")]),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.list.phone,
+              expression: "list.phone"
+            }
+          ],
+          staticClass: "input",
+          attrs: { type: "text", placeholder: "Phone" },
+          domProps: { value: _vm.list.phone },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.list, "phone", $event.target.value)
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
       _c("footer", { staticClass: "modal-card-foot" }, [
-        _c("button", { staticClass: "button is-success" }, [
-          _vm._v("Save changes")
-        ]),
+        _c(
+          "button",
+          { staticClass: "button is-success", on: { click: _vm.save } },
+          [_vm._v("Save changes")]
+        ),
         _vm._v(" "),
         _c(
           "button",
@@ -46292,18 +46398,7 @@ var render = function() {
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("header", { staticClass: "modal-card-head" }, [
-      _c("p", { staticClass: "modal-card-title" }, [_vm._v("Modal title")]),
-      _vm._v(" "),
-      _c("button", { staticClass: "delete", attrs: { "aria-label": "close" } })
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
