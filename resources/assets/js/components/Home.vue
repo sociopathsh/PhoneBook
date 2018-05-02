@@ -35,7 +35,7 @@
 
                 <span class="column is-1">
                <span class="panel-icon">
-                    <i class="has-text-primary fa fa-eye" aria-hidden="true"></i>
+                    <i class="has-text-primary fa fa-eye" aria-hidden="true" v-on:click="showDetailModal(key)"></i>
                 </span>
             </span>
 
@@ -43,6 +43,7 @@
         </nav>
 
         <add-modal v-bind:addModal="addModal" v-on:closeAddModal="closeAddModal"></add-modal>
+        <show-modal v-bind:showModal="showModal" v-on:closeAddModal="closeAddModal"></show-modal>
 
     </div>
 
@@ -50,14 +51,17 @@
 
 <script>
 import addModal from './addModal.vue';
+import showModal from './showModal.vue';
 
     export default {
         components: {
-            'add-modal' : addModal
+            'add-modal' : addModal,
+            'show-modal': showModal
         },
         data() {
             return {
                 addModal: '',
+                showModal: '',
                 lists: {}
             }
         },
@@ -65,8 +69,13 @@ import addModal from './addModal.vue';
             showAddModal: function () {
                 this.addModal = 'is-active';
             },
+            showDetailModal: function (key) {
+                this.$children[1].list = this.lists[key];
+              this.showModal = 'is-active';
+            },
             closeAddModal: function () {
                 this.addModal = '';
+                this.showModal = '';
             }
         },
         created() {
