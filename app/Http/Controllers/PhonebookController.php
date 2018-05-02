@@ -54,6 +54,11 @@ class PhonebookController extends Controller
         //
     }
 
+    public function getData(Request $request)
+    {
+        return Phonebook::orderBy('name','ASC')->get();
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

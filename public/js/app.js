@@ -46163,7 +46163,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
-            addModal: ''
+            addModal: '',
+            lists: {}
         };
     },
 
@@ -46174,6 +46175,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         closeAddModal: function closeAddModal() {
             this.addModal = '';
         }
+    },
+    created: function created() {
+        var _this = this;
+
+        axios.post('/getData').then(function (response) {
+            _this.lists = response.data;
+        }).catch(function (error) {
+            cosole.log(error.response.data.errors);
+        });
     }
 });
 
@@ -46457,23 +46467,40 @@ var render = function() {
   return _c(
     "div",
     [
-      _c("nav", { staticClass: "panel column is-8 is-offset-2" }, [
-        _c("p", { staticClass: "panel-heading" }, [
-          _vm._v("\n            Vuejs Phonebook\n            "),
-          _c(
-            "button",
-            {
-              staticClass: "button is-link is-outlined",
-              on: { click: _vm.showAddModal }
-            },
-            [_vm._v("\n                Add New\n            ")]
-          )
-        ]),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _vm._m(1)
-      ]),
+      _c(
+        "nav",
+        { staticClass: "panel column is-8 is-offset-2" },
+        [
+          _c("p", { staticClass: "panel-heading" }, [
+            _vm._v("\n            Vuejs Phonebook\n            "),
+            _c(
+              "button",
+              {
+                staticClass: "button is-link is-outlined",
+                on: { click: _vm.showAddModal }
+              },
+              [_vm._v("\n                Add New\n            ")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm._m(0),
+          _vm._v(" "),
+          _vm._l(_vm.lists, function(list, key) {
+            return _c("a", { staticClass: "panel-block" }, [
+              _c("span", { staticClass: "column is-9" }, [
+                _vm._v("\n            " + _vm._s(list.name) + "\n        ")
+              ]),
+              _vm._v(" "),
+              _vm._m(1, true),
+              _vm._v(" "),
+              _vm._m(2, true),
+              _vm._v(" "),
+              _vm._m(3, true)
+            ])
+          })
+        ],
+        2
+      ),
       _vm._v(" "),
       _c("add-modal", {
         attrs: { addModal: _vm.addModal },
@@ -46508,36 +46535,38 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("a", { staticClass: "panel-block" }, [
-      _c("span", { staticClass: "column is-9" }, [
-        _vm._v("\n            marksheet\n        ")
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "column is-1" }, [
-        _c("span", { staticClass: "panel-icon" }, [
-          _c("i", {
-            staticClass: "has-text-danger fa fa-trash",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "column is-1" }, [
-        _c("span", { staticClass: "panel-icon" }, [
-          _c("i", {
-            staticClass: "has-text-info fa fa-edit",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
-      ]),
-      _vm._v(" "),
-      _c("span", { staticClass: "column is-1" }, [
-        _c("span", { staticClass: "panel-icon" }, [
-          _c("i", {
-            staticClass: "has-text-primary fa fa-eye",
-            attrs: { "aria-hidden": "true" }
-          })
-        ])
+    return _c("span", { staticClass: "column is-1" }, [
+      _c("span", { staticClass: "panel-icon" }, [
+        _c("i", {
+          staticClass: "has-text-danger fa fa-trash",
+          attrs: { "aria-hidden": "true" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "column is-1" }, [
+      _c("span", { staticClass: "panel-icon" }, [
+        _c("i", {
+          staticClass: "has-text-info fa fa-edit",
+          attrs: { "aria-hidden": "true" }
+        })
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { staticClass: "column is-1" }, [
+      _c("span", { staticClass: "panel-icon" }, [
+        _c("i", {
+          staticClass: "has-text-primary fa fa-eye",
+          attrs: { "aria-hidden": "true" }
+        })
       ])
     ])
   }

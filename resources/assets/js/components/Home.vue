@@ -17,9 +17,9 @@
       </span>
                 </p>
             </div>
-            <a class="panel-block">
+            <a class="panel-block" v-for="(list,key) in lists">
             <span class="column is-9">
-                marksheet
+                {{ list.name }}
             </span>
                 <span class="column is-1">
                <span class="panel-icon">
@@ -57,7 +57,8 @@ import addModal from './addModal.vue';
         },
         data() {
             return {
-                addModal: ''
+                addModal: '',
+                lists: {}
             }
         },
         methods: {
@@ -67,6 +68,13 @@ import addModal from './addModal.vue';
             closeAddModal: function () {
                 this.addModal = '';
             }
+        },
+        created() {
+            axios.post('/getData').then((response) => {
+                this.lists = response.data;
+            }).catch((error) => {
+                cosole.log(error.response.data.errors);
+            });
         }
     }
 </script>
