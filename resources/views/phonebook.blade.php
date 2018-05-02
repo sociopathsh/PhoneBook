@@ -12,6 +12,9 @@
 
 <div id="app">
 
+<app-header></app-header>
+<app-footer></app-footer>
+
 </div>
 
 <script src="{!! asset('js/app.js') !!}"></script>
