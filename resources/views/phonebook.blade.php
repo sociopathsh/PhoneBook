@@ -12,8 +12,11 @@
 
 <div id="app">
 
-<app-header></app-header>
-<app-footer></app-footer>
+<div class="container">
+    <app-header></app-header>
+    <router-view></router-view>
+    <app-footer></app-footer>
+</div>
 
 </div>
 

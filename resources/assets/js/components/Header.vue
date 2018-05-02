@@ -7,13 +7,13 @@
             </a>
 
             <div class="navbar-menu is-active">
-                <a class="navbar-item" href="#">
+                <router-link class="navbar-item" to="/home">
                     Home
-                </a>
+                </router-link>
 
-                <a class="navbar-item" href="#">
+                <router-link class="navbar-item" to="/about">
                     About
-                </a>
+                </router-link>
             </div>
 
             <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">

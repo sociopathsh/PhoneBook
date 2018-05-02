@@ -1,0 +1,43 @@
+<template>
+
+    <nav class="panel column is-8 is-offset-2">
+        <p class="panel-heading">
+            Vuejs Phonebook
+            <button class="button is-link is-outlined">
+                Add New
+            </button>
+        </p>
+        <div class="panel-block">
+            <p class="control has-icons-left">
+                <input class="input is-small" type="text" placeholder="search">
+                <span class="icon is-small is-left">
+        <i class="fa fa-search" aria-hidden="true"></i>
+      </span>
+            </p>
+        </div>
+        <a class="panel-block">
+            <span class="column is-9">
+                marksheet
+            </span>
+            <span class="column is-1">
+               <span class="panel-icon">
+                    <i class="has-text-danger fa fa-trash" aria-hidden="true"></i>
+                </span>
+            </span>
+
+            <span class="column is-1">
+               <span class="panel-icon">
+                    <i class="has-text-info fa fa-edit" aria-hidden="true"></i>
+                </span>
+            </span>
+
+            <span class="column is-1">
+               <span class="panel-icon">
+                    <i class="has-text-primary fa fa-eye" aria-hidden="true"></i>
+                </span>
+            </span>
+
+        </a>
+    </nav>
+
+</template>
