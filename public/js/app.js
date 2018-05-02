@@ -46256,6 +46256,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['addModal'],
@@ -46265,7 +46274,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 name: '',
                 email: '',
                 phone: ''
-            }
+            },
+            errors: {}
         };
     },
 
@@ -46280,7 +46290,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 console.log(response);
                 _this.$emit('closeAddModal');
             }).catch(function (error) {
-                console.log(error);
+                console.log(error.response.data.errors);
+                _this.errors = error.response.data.errors;
             });
         }
     }
@@ -46309,77 +46320,104 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("section", { staticClass: "modal-card-body" }, [
-        _c("label", [_vm._v("Name")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.list.name,
-              expression: "list.name"
-            }
-          ],
-          staticClass: "input",
-          attrs: { type: "text", placeholder: "Name" },
-          domProps: { value: _vm.list.name },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "field" }, [
+          _c("label", [_vm._v("Name")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.list.name,
+                expression: "list.name"
               }
-              _vm.$set(_vm.list, "name", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c("label", [_vm._v("Email")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.list.email,
-              expression: "list.email"
-            }
-          ],
-          staticClass: "input",
-          attrs: { type: "text", placeholder: "Email" },
-          domProps: { value: _vm.list.email },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+            ],
+            staticClass: "input",
+            class: { "is-danger": _vm.errors.name },
+            attrs: { type: "text", placeholder: "Name" },
+            domProps: { value: _vm.list.name },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.list, "name", $event.target.value)
               }
-              _vm.$set(_vm.list, "email", $event.target.value)
             }
-          }
-        }),
+          }),
+          _vm._v(" "),
+          _vm.errors.name
+            ? _c("span", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.name[0]))
+              ])
+            : _vm._e()
+        ]),
         _vm._v(" "),
-        _c("label", [_vm._v("Phone")]),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.list.phone,
-              expression: "list.phone"
-            }
-          ],
-          staticClass: "input",
-          attrs: { type: "text", placeholder: "Phone" },
-          domProps: { value: _vm.list.phone },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+        _c("div", { staticClass: "field" }, [
+          _c("label", [_vm._v("Email")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.list.email,
+                expression: "list.email"
               }
-              _vm.$set(_vm.list, "phone", $event.target.value)
+            ],
+            staticClass: "input",
+            class: { "is-danger": _vm.errors.email },
+            attrs: { type: "text", placeholder: "Email" },
+            domProps: { value: _vm.list.email },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.list, "email", $event.target.value)
+              }
             }
-          }
-        })
+          }),
+          _vm._v(" "),
+          _vm.errors.email
+            ? _c("span", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.email[0]))
+              ])
+            : _vm._e()
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "field" }, [
+          _c("label", [_vm._v("Phone")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.list.phone,
+                expression: "list.phone"
+              }
+            ],
+            staticClass: "input",
+            class: { "is-danger": _vm.errors.phone },
+            attrs: { type: "text", placeholder: "Phone" },
+            domProps: { value: _vm.list.phone },
+            on: {
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.$set(_vm.list, "phone", $event.target.value)
+              }
+            }
+          }),
+          _vm._v(" "),
+          _vm.errors.phone
+            ? _c("span", { staticClass: "has-text-danger" }, [
+                _vm._v(_vm._s(_vm.errors.phone[0]))
+              ])
+            : _vm._e()
+        ])
       ]),
       _vm._v(" "),
       _c("footer", { staticClass: "modal-card-foot" }, [

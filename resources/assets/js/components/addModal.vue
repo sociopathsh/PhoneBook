@@ -8,12 +8,21 @@
                 <button class="delete" aria-label="close" v-on:click="closeAddModal"></button>
             </header>
             <section class="modal-card-body">
-                <label>Name</label>
-                <input class="input" type="text" placeholder="Name" v-model="list.name">
-                <label>Email</label>
-                <input class="input" type="text" placeholder="Email" v-model="list.email">
-                <label>Phone</label>
-                <input class="input" type="text" placeholder="Phone" v-model="list.phone">
+                <div class="field">
+                    <label>Name</label>
+                    <input v-bind:class="{'is-danger': errors.name}" class="input" type="text" placeholder="Name" v-model="list.name">
+                    <span v-if="errors.name" class="has-text-danger">{{ errors.name[0] }}</span>
+                </div>
+                <div class="field">
+                    <label>Email</label>
+                    <input v-bind:class="{'is-danger': errors.email}" class="input" type="text" placeholder="Email" v-model="list.email">
+                    <span v-if="errors.email" class="has-text-danger">{{ errors.email[0] }}</span>
+                </div>
+                <div class="field">
+                    <label>Phone</label>
+                    <input v-bind:class="{'is-danger': errors.phone}" class="input" type="text" placeholder="Phone" v-model="list.phone">
+                    <span v-if="errors.phone" class="has-text-danger">{{ errors.phone[0] }}</span>
+                </div>
             </section>
             <footer class="modal-card-foot">
                 <button class="button is-success" v-on:click="save">Save changes</button>
@@ -33,7 +42,8 @@
                     name: '',
                     email: '',
                     phone: ''
-                }
+                },
+                errors: {}
             }
         },
         methods: {
@@ -45,7 +55,8 @@
                     console.log(response);
                     this.$emit('closeAddModal');
                 }).catch((error) => {
-                    console.log(error);
+                    console.log(error.response.data.errors);
+                    this.errors = error.response.data.errors;
                 });
             }
         }
